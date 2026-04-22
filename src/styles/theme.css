@@ -24,7 +24,7 @@
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(86.923% 0.00328 15.561);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -60,7 +60,7 @@
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
+  --ring: oklch(38.385% 0.00134 15.422);
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --chart-1: oklch(0.488 0.243 264.376);
@@ -121,13 +121,13 @@
   /* Custom NGO colors */
   --color-cream-50: #fefaf5;
   --color-cream-100: #fdf5eb;
-  --color-orange-50: #fff7ed;
-  --color-orange-100: #ffedd5;
-  --color-orange-400: #fb923c;
-  --color-orange-500: #f97316;
-  --color-orange-600: #ea580c;
-  --color-orange-700: #c2410c;
-  --color-orange-800: #9a3412;
+  --color-orange-50: #BA55D3;
+  --color-orange-100: #9370DB;
+  --color-orange-400: #7A288A;
+  --color-orange-500: #6A0DAD;
+  --color-orange-600: #4B0082;
+  --color-orange-700: #700070;
+  --color-orange-800: #800080;
 }
 
 @layer base {
