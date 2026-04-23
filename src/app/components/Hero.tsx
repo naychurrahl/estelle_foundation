@@ -2,15 +2,12 @@ import { organizationInfo } from "@/app/data/ngoData";
 import { Heart } from "lucide-react";
 
 export function Hero() {
+  {/* <div className="relative bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400 text-white"> */}
   return (
     <div className="relative bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400 text-white">
+      
       <div className="max-w-7xl mx-auto px-4 py-24 md:py-32">
         <div className="text-center max-w-4xl mx-auto">
-          <div className="flex justify-center mb-6">
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full">
-              <Heart className="w-12 h-12" />
-            </div>
-          </div>
           <h1 className="text-5xl md:text-6xl mb-6">{organizationInfo.name}</h1>
           <p className="text-2xl md:text-3xl text-orange-100 mb-8 italic">
             "{organizationInfo.motto}"
@@ -29,11 +26,12 @@ export function Hero() {
               href="#projects"
               className="px-8 py-4 bg-orange-700 text-white rounded-full hover:bg-orange-800 transition-colors shadow-lg text-lg"
             >
-              View Our Work
+              Our Projects
             </a>
           </div>
         </div>
       </div>
+
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-cream-50 to-transparent"></div>
     </div>
   );

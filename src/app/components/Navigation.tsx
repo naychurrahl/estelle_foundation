@@ -17,50 +17,54 @@ export function Navigation() {
   const navLinks = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About Us" },
-    /* {
-      path: "/#services",
-      label: "Services",
-      submenu: Object.entries(services).map(([key, value]) => ({
-        path: `/#${value?.slug}`,
-        label: value?.title ?? null,
-      })),
-    }, */
     { path: "/gallery", label: "Gallery" },
-    { path: "/blog", label: "Blog" },
+    { path: "/#projects", label: "Project" },
     { path: "/contact", label: "Contact" },
   ];
 
   return (
-    <nav className="shadow-md sticky top-0 z-50 bg-brand-white">
+    <nav className="shadow-md sticky top-0 z-50 bg-orange-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <a href="/" className="flex items-center">
-            {/* <span className="text-2xl text-brand-primary" style={{ fontFamily: 'Georgia, serif', fontWeight: 700 }}>Phindol</span>
-            <span className="text-2xl ml-1 text-brand-primary" style={{ fontFamily: 'Arial, sans-serif' }}>Insurance</span> */}
-            <Logo src="/logo.png" alt="Phindol Insurance Logo" size={40} />
+            <span
+              className="text-2xl text-cream-100"
+              style={{ fontFamily: "Georgia, serif", fontWeight: 700 }}
+            >
+              Estelle
+            </span>
+            <span
+              className="text-2xl ml-1 text-brand-primary"
+              style={{ fontFamily: "Arial, sans-serif" }}
+            >
+              Foundation
+            </span>
           </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <div key={link.path} className="relative group">
+              <div
+                key={link.path}
+                className="relative group px-4 py-2 transition-colors text-lg"
+              >
                 {link.submenu ? (
                   <>
                     <button
                       className="transition-colors"
                       style={{
                         color: isActive(link.path)
-                          ? "var(--brand-secondary)"
-                          : "var(--brand-primary)",
+                          ? "var(--color-orange-50)"
+                          : "var(--color-cream-50)",
                       }}
                       onMouseEnter={(e) =>
                         !isActive(link.path) &&
-                        (e.currentTarget.style.color = "var(--brand-secondary)")
+                        (e.currentTarget.style.color = "var(--color-orange-50)")
                       }
                       onMouseLeave={(e) =>
                         !isActive(link.path) &&
-                        (e.currentTarget.style.color = "var(--brand-primary)")
+                        (e.currentTarget.style.color = "var(--color-cream-50)")
                       }
                     >
                       {link.label}
@@ -83,16 +87,16 @@ export function Navigation() {
                     className="transition-colors"
                     style={{
                       color: isActive(link.path)
-                        ? "var(--brand-secondary)"
-                        : "var(--brand-primary)",
+                        ? "var(--color-orange-50)"
+                        : "var(--color-cream-50)",
                     }}
                     onMouseEnter={(e) =>
                       !isActive(link.path) &&
-                      (e.currentTarget.style.color = "var(--brand-secondary)")
+                      (e.currentTarget.style.color = "var(--color-orange-50)")
                     }
                     onMouseLeave={(e) =>
                       !isActive(link.path) &&
-                      (e.currentTarget.style.color = "var(--brand-primary)")
+                      (e.currentTarget.style.color = "var(--color-cream-50)")
                     }
                   >
                     {link.label}
@@ -100,7 +104,10 @@ export function Navigation() {
                 )}
               </div>
             ))}
-            <a href="/#get-involved" className="btn-primary">
+            <a
+              href="/#get-involved"
+              className="px-4 py-2 bg-white text-orange-600 rounded-full hover:bg-orange-50 transition-colors shadow-lg text-lg"
+            >
               Donate
             </a>
           </div>
