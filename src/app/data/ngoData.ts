@@ -1,8 +1,14 @@
 // NGO Data
 
-export const toTitleCase = (str:any) => {
-  return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase()+word.slice(1)).join(' ');
-}
+import { Globe } from "lucide-react";
+
+export const toTitleCase = (str: any) => {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 export interface BlogPosts {
   id: Number;
@@ -21,7 +27,8 @@ export interface Blog {
   blogCategories: String[];
 }
 
-export interface Director {//Going soon!!
+export interface Director {
+  //Going soon!!
   id: number;
   name: string;
   title: string;
@@ -80,7 +87,8 @@ export interface Testimonials {
   testifier: string;
 }
 
-export const directors: Director[] = [//Going soon
+export const directors: Director[] = [
+  //Going soon
   {
     id: 1,
     name: "Dr. Sarah Johnson",
@@ -173,7 +181,7 @@ export const organizationInfo = {
     "A world where every community has access to essential resources, quality education, and healthcare, enabling individuals to reach their full potential.",
   mission:
     "To empower underserved communities through sustainable development programs, focusing on education, healthcare, clean water, and economic opportunity.",
-  story: "",
+  story: "Our very long story, presicely 25 ... well fuck it",
   objectives: [
     "Provide access to clean water and sanitation for 1 million people by 2028",
     "Establish 200 community health centers in rural areas",
@@ -207,26 +215,41 @@ export const organizationInfo = {
         "We work in partnership with local communities and stakeholders",
     },
   ],
-  contact: [
-    {
+  contact: {
+    address: {
       name: "address",
       values: ["123 Hope Street, Suite 500, New York, NY 10001"],
     },
-    { name: "website", values: ["www.hopzandchange.org"] },
-    { name: "email", values: ["info@hopeandchange.org"] },
-    { name: "phone", values: ["+1 (555) 123-4567", "+1 (555) 123-4567"] },
-    /*facebook: "123 Hope Street, Suite 500, New York, NY 10001",
-    instagram: "123 Hope Street, Suite 500, New York, NY 10001",
-    "X(fomerly Twitter)": "123 Hope Street, Suite 500, New York, NY 10001",
-    "tik-tok": "123 Hope Street, Suite 500, New York, NY 10001", */
-  ],
+    website: { name: "website", values: ["www.hopzandchange.org"], icon: Globe },
+    email: { name: "email", values: ["info@hopeandchange.org"] },
+    phone: {
+      name: "phone",
+      values: ["+1 (555) 123-4567", "+1 (555) 123-4568"],
+    },
+    facebook: {
+      name: "facebook",
+      values: ["123 Hope Street, Suite 500, New York, NY 10001"],
+    },
+    instagram: {
+      name: "instagram",
+      values: ["123 Hope Street, Suite 500, New York, NY 10001"],
+    },
+    "X(fomerly Twitter)": {
+      name: "X(fomerly Twitter)",
+      values: ["123 Hope Street, Suite 500, New York, NY 10001"],
+    },
+    "tik-tok": {
+      name: "tik-tok",
+      values: ["123 Hope Street, Suite 500, New York, NY 10001"],
+    },
+  },
 };
 
 export const partners: Partner[] = [
-  {id: 1, name: "Dangote", logo: "https://jpg.co"},
-  {id: 2, name: "Dangote", logo: "https://jpg.co"},
-  {id: 3, name: "Dangote", logo: "https://jpg.co"},
-  {id: 4, name: "Dangote", logo: "https://jpg.co"},
+  { id: 1, name: "Dangote", logo: "https://jpg.co" },
+  { id: 2, name: "Dangote", logo: "https://jpg.co" },
+  { id: 3, name: "Dangote", logo: "https://jpg.co" },
+  { id: 4, name: "Dangote", logo: "https://jpg.co" },
 ];
 
 export const projects: Project[] = [
@@ -264,7 +287,7 @@ export const projects: Project[] = [
   },
 ];
 
-export const services: Project[] = [];//Definitely going
+export const services: Project[] = []; //Definitely going
 
 export const Teams: Team[] = [
   {
@@ -311,7 +334,7 @@ export const Teams: Team[] = [
           ],
           impact:
             "Reduced operational costs by 40% while expanding program reach by 200%",
-        }
+        },
       },
       {
         id: 3,
@@ -325,7 +348,7 @@ export const Teams: Team[] = [
             "15 years in community development across West Africa, Former Program Manager at Oxfam",
           impact:
             "Launched 50+ education programs benefiting over 25,000 children",
-        }
+        },
       },
       {
         id: 4,
@@ -337,7 +360,7 @@ export const Teams: Team[] = [
           bio: "Dr. Martinez oversees all medical programs and partnerships, ensuring quality healthcare reaches underserved communities.",
           education: "MD, University of California; MPH, Columbia University",
           skills: ["Public Health", "Medical Training", "Healthcare Policy"],
-        }
+        },
       },
       {
         id: 5,
@@ -349,7 +372,7 @@ export const Teams: Team[] = [
           bio: "Lisa ensures financial transparency and sustainability, managing our resources with integrity and strategic foresight.",
           experience:
             "Former CFO at international development organization, 18 years in non-profit finance",
-        }
+        },
       },
       {
         id: 6,
@@ -359,8 +382,12 @@ export const Teams: Team[] = [
           "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHByb2Zlc3Npb25hbCUyMHdvbWFufGVufDF8fHx8MTc2OTA3NDA5OHww&ixlib=rb-4.1.0&q=80&w=1080",
         meta: {
           bio: "Raj leverages technology to amplify our impact, from data-driven decision making to digital education platforms.",
-          skills: ["Software Development", "Data Analytics", "Digital Strategy"],
-        }
+          skills: [
+            "Software Development",
+            "Data Analytics",
+            "Digital Strategy",
+          ],
+        },
       },
     ],
   },

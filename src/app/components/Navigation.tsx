@@ -1,8 +1,7 @@
 import { useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import Logo from "./ui/logo";
-import { services } from "../data/ngoData";
+import Logo from "@/app/components/ui/logo";
 
 export function Navigation() {
   const location = useLocation();
@@ -101,7 +100,7 @@ export function Navigation() {
                 )}
               </div>
             ))}
-            <a href="/home#get-involved" className="btn-primary">
+            <a href="/#get-involved" className="btn-primary">
               Donate
             </a>
           </div>
@@ -172,11 +171,11 @@ export function Navigation() {
               </div>
             ))}
             <a
-              href="/contact"
+              href="/#get-involved"
               className="btn-primary block mx-4 mt-4 text-center"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Get a Quote
+              Donate
             </a>
           </div>
         )}

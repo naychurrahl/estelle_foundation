@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { MapPin, Mail, Clock, Phone, Send, LucideIcon, PersonStanding } from "lucide-react";
+import { MapPin, Mail, Clock, Phone, Send, LucideIcon, PersonStanding, Globe } from "lucide-react";
 
 import {
   organizationInfo as companyInfo,
@@ -71,7 +71,6 @@ export function ContactInfo() {
     });
   };
 
-  console.log({info: companyInfo});
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,117 +79,19 @@ export function ContactInfo() {
           <div>
             <h2 className="text-3xl mb-6 text-gray-900">Get in Touch</h2>
             <p className="text-gray-600 mb-8">
-              Have questions about {companyInfo.name}? Want to partner or just
+              Have questions about {companyInfo.name}? Want to partner? Or just
               reach out?
             </p>
 
             <div className="space-y-6">
-              {companyInfo.contact.map(
-                (info: { name: string; values: string[] }, value: string) => (
-                  <InfoCard key={value} info={info.name} value={ info.values } />
-                ),
-                {
-                },
-              {/* <div className="flex items-start" key={value}>
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <Phone className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">
-                    {`${toTitleCase(info.name)}`}
-                  </h3>
-                  <p className="text-gray-600">{`${info.values}`}</p>
-                </div>
-              </div> */}
-              )}
-              {/* <InfoCard key={info} info={value.name} value={ value.values } /> */}
-
-              {/* <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <Mail className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">Email</h3>
-                  <p className="text-gray-600">{`${companyInfo.contact.email}`}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <Mail className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">twiter</h3>
-                  <p className="text-gray-600">{`${companyInfo.contact.email}`}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <Mail className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">Email</h3>
-                  <p className="text-gray-600">{`${companyInfo.contact.email}`}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <Mail className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">Email</h3>
-                  <p className="text-gray-600">{`${companyInfo.contact.email}`}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <Mail className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">Email</h3>
-                  <p className="text-gray-600">{`${companyInfo.contact.email}`}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <MapPin className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">Office Address</h3>
-                  <p className="text-gray-600">{`${companyInfo.contact.address}`}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                    <Clock className="text-blue-600" size={24} />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg mb-1 text-gray-900">Work Hours</h3>
-                  <p className="text-gray-600">Week days: 9:00 AM - 3:00 PM</p>
-                  <p className="text-gray-600">Weekends: Closed</p>
-                </div>
-              </div> */}
+              {Object.values(companyInfo.contact).map((info, value) => (
+                <InfoCard
+                  key={value}
+                  info={info.name}
+                  value={info.values}
+                  Icon={info.icon ?? MapPin}
+                />
+              ))}
             </div>
           </div>
 

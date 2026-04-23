@@ -4,6 +4,7 @@ import { GetInvolved } from "@/app/components/GetInvolved";
 import { HeroMinor } from "@/app/components/HeroMinor";
 import { Navigation } from "@/app/components/Navigation";
 import { MapBlock } from "@/app/components/MapBlock";
+
 import { organizationInfo } from "@/app/data/ngoData";
 
 
