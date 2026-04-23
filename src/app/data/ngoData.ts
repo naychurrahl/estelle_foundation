@@ -1,5 +1,9 @@
 // NGO Data
 
+export const toTitleCase = (str:any) => {
+  return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase()+word.slice(1)).join(' ');
+}
+
 export interface BlogPosts {
   id: Number;
   title: String;
@@ -203,12 +207,19 @@ export const organizationInfo = {
         "We work in partnership with local communities and stakeholders",
     },
   ],
-  contact: {
-    website: "www.hopzandchange.org",
-    email: "info@hopeandchange.org",
-    phone: "+1 (555) 123-4567",
-    address: "123 Hope Street, Suite 500, New York, NY 10001",
-  },
+  contact: [
+    {
+      name: "address",
+      values: ["123 Hope Street, Suite 500, New York, NY 10001"],
+    },
+    { name: "website", values: ["www.hopzandchange.org"] },
+    { name: "email", values: ["info@hopeandchange.org"] },
+    { name: "phone", values: ["+1 (555) 123-4567", "+1 (555) 123-4567"] },
+    /*facebook: "123 Hope Street, Suite 500, New York, NY 10001",
+    instagram: "123 Hope Street, Suite 500, New York, NY 10001",
+    "X(fomerly Twitter)": "123 Hope Street, Suite 500, New York, NY 10001",
+    "tik-tok": "123 Hope Street, Suite 500, New York, NY 10001", */
+  ],
 };
 
 export const partners: Partner[] = [

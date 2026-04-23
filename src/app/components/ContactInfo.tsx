@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { MapPin, Mail, Clock, Phone, Send } from "lucide-react";
+import { MapPin, Mail, Clock, Phone, Send, LucideIcon, PersonStanding } from "lucide-react";
 
-import { organizationInfo as companyInfo } from "@/app/data/ngoData";
+import {
+  organizationInfo as companyInfo,
+  toTitleCase,
+} from "@/app/data/ngoData";
 
 interface VolunteerForm {
   name: string;
   email: string;
   message: string;
+}
+
+interface InfoCard {
+  key: any;
+  info: string;
+  value: string[];
+  Icon?: LucideIcon;
 }
 
 export function ContactInfo() {
@@ -18,6 +28,22 @@ export function ContactInfo() {
     insuranceType: "",
     message: "",
   });
+
+  function InfoCard({key, info, value, Icon=PersonStanding}:InfoCard) {
+  return (
+    <div className="flex items-start" key={key}>
+      <div className="flex-shrink-0">
+        <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
+          <Icon className="text-blue-600" size={24} />
+        </div>
+      </div>
+      <div className="ml-4">
+        <h3 className="text-lg mb-1 text-gray-900">{toTitleCase(info)}</h3>
+        <p className="text-gray-600">{`${value.join(", ")}`}</p>
+      </div>
+    </div>
+  );
+}
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +71,7 @@ export function ContactInfo() {
     });
   };
 
+  console.log({info: companyInfo});
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,19 +85,27 @@ export function ContactInfo() {
             </p>
 
             <div className="space-y-6">
-              {companyInfo.map((key, info) => (
-                <div className="flex items-start">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
-                      <Phone className="text-blue-600" size={24} />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg mb-1 text-gray-900">{key}</h3>
-                    <p className="text-gray-600">{info}</p>
+              {companyInfo.contact.map(
+                (info: { name: string; values: string[] }, value: string) => (
+                  <InfoCard key={value} info={info.name} value={ info.values } />
+                ),
+                {
+                },
+              {/* <div className="flex items-start" key={value}>
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg">
+                    <Phone className="text-blue-600" size={24} />
                   </div>
                 </div>
-              ))}
+                <div className="ml-4">
+                  <h3 className="text-lg mb-1 text-gray-900">
+                    {`${toTitleCase(info.name)}`}
+                  </h3>
+                  <p className="text-gray-600">{`${info.values}`}</p>
+                </div>
+              </div> */}
+              )}
+              {/* <InfoCard key={info} info={value.name} value={ value.values } /> */}
 
               {/* <div className="flex items-start">
                 <div className="flex-shrink-0">
