@@ -9,13 +9,15 @@ export function Navigation() {
 
   const isActive = (path: string) => {
     if (path === "/") {
-      return location.pathname === "/";
+      console.log("for some reason");
+      return location.pathname === "/home";
     }
+    console.log(path);
     return location.pathname.startsWith(path);
   };
 
   const navLinks = [
-    { path: "/", label: "Home" },
+    { path: "/home", label: "Home" },
     { path: "/about", label: "About Us" },
     { path: "/gallery", label: "Gallery" },
     { path: "/#projects", label: "Project" },
@@ -23,7 +25,7 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="shadow-md sticky top-0 z-50 bg-orange-600">
+    <nav className="shadow-md shadow-orange-50 sticky top-0 z-50 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -92,7 +94,9 @@ export function Navigation() {
                     }}
                     onMouseEnter={(e) =>
                       !isActive(link.path) &&
-                      (e.currentTarget.style.color = "var(--color-orange-50)")
+                      (e.currentTarget.style.color = isActive(link.path)
+                        ? "var(--color-orange-500)"
+                        : "var(--color-orange-50)")
                     }
                     onMouseLeave={(e) =>
                       !isActive(link.path) &&
@@ -106,7 +110,13 @@ export function Navigation() {
             ))}
             <a
               href="/#get-involved"
-              className="px-4 py-2 bg-white text-orange-600 rounded-full hover:bg-orange-50 transition-colors shadow-lg text-lg"
+              className="px-4 py-2 bg-cream-50/80 text-orange-600 hover:bg-orange-50 rounded-full transition-colors shadow-lg text-lg"
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = "var(--color-cream-50)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--color-orange-500)")
+              }
             >
               Donate
             </a>
@@ -179,7 +189,7 @@ export function Navigation() {
             ))}
             <a
               href="/#get-involved"
-              className="btn-primary block mx-4 mt-4 text-center"
+              className="btn-primary block mx-4 mt-4 text-center bg-cream-50/80 rounded-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
               Donate
