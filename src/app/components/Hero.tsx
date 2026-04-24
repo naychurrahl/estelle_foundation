@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 export function Hero() {
   {/* <div className="relative bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400 text-white"> */}
   return (
-    <div className="relative bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400 text-white">
+    <div className="relative bg-gradient-to-br from-orange-600/30 via-orange-500 to-orange-400 text-white">
       
       <div className="max-w-7xl mx-auto px-4 py-24 md:py-32">
         <div className="text-center max-w-4xl mx-auto">

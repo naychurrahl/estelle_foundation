@@ -118,7 +118,7 @@ export function Navigation() {
                 (e.currentTarget.style.color = "var(--color-orange-500)")
               }
             >
-              Donate
+              Get Involved
             </a>
           </div>
 
@@ -192,7 +192,7 @@ export function Navigation() {
               className="btn-primary block mx-4 mt-4 text-center bg-cream-50/80 rounded-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Donate
+            Get Involved
             </a>
           </div>
         )}
