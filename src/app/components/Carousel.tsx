@@ -82,7 +82,7 @@ const Card = ({
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full bg-cream-50/50 rounded-2xl object-cover hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6">
