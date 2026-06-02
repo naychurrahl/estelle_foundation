@@ -44,7 +44,8 @@ export function MeetTheTeam() {
             <SectionLabel>The People Behind Our Mission</SectionLabel>
             <SectionHeading>Meet Our Team</SectionHeading>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Our dedicated team brings together diverse expertise and a shared passion for creating positive change.
+              Our dedicated team brings together diverse expertise and a shared
+              passion for creating positive change.
             </p>
           </FadeIn>
         </div>
@@ -62,15 +63,15 @@ export function MeetTheTeam() {
                 </div>
                 <CardHeader>
                   <CardTitle>{member.name}</CardTitle>
-                  <div className="text-sm text-blue-600">{member.role}</div>
+                  <div className="text-sm text-purple-600">{member.role}</div>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-slate-600 mb-4">{member.bio}</p>
                   <div className="flex gap-2">
-                    <button className="size-8 rounded-full bg-slate-100 hover:bg-blue-100 flex items-center justify-center transition-colors">
+                    <button className="size-8 rounded-full bg-slate-100 hover:bg-purple-100 flex items-center justify-center transition-colors">
                       <Linkedin className="size-4 text-slate-600" />
                     </button>
-                    <button className="size-8 rounded-full bg-slate-100 hover:bg-blue-100 flex items-center justify-center transition-colors">
+                    <button className="size-8 rounded-full bg-slate-100 hover:bg-purple-100 flex items-center justify-center transition-colors">
                       <Mail className="size-4 text-slate-600" />
                     </button>
                   </div>

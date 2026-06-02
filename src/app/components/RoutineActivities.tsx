@@ -53,9 +53,9 @@ export function RoutineActivities() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {activities.map((item, index) => (
             <FadeIn key={item.day} delay={index * 0.1}>
-              <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-blue-600">
+              <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-purple-600">
                 <CardHeader>
-                  <CardTitle className="text-lg text-blue-600">
+                  <CardTitle className="text-lg text-purple-600">
                     {item.activity}
                   </CardTitle>
                 </CardHeader>

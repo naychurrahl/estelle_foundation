@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 export function AboutBrief() {
   return (
-    <section className="py-20 bg-white" >
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <FadeIn>
@@ -47,7 +47,7 @@ export function AboutBrief() {
                 alt="Team collaboration"
                 className="rounded-lg shadow-xl"
               />
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-600/10 rounded-lg -z-10" />
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-purple-600/10 rounded-lg -z-10" />
             </div>
           </FadeIn>
         </div>

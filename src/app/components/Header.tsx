@@ -23,10 +23,6 @@ export function Header() {
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            {/*<div className="size-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold">
-              EF
-            </div>
-             <span className="text-xl">Estelle Foundation</span> */}
           </Link>
 
           {/* Desktop Navigation */}
@@ -35,7 +31,7 @@ export function Header() {
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-sm hover:text-blue-600 transition-colors"
+                className="text-sm hover:text-purple-600 transition-colors"
               >
                 {item.name}
               </Link>
@@ -55,7 +51,7 @@ export function Header() {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="text-lg hover:text-blue-600 transition-colors"
+                    className="text-lg hover:text-purple-600 transition-colors"
                   >
                     {item.name}
                   </Link>

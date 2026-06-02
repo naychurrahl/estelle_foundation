@@ -9,7 +9,7 @@ export function OutlineButton({ children, ...props }: OutlineButtonProps) {
   return (
     <Button
       variant="outline"
-      className="border-blue-600 text-blue-600 hover:bg-blue-50"
+      className="border-purple-600 text-purple-600 hover:bg-purple-50"
       {...props}
     >
       {children}

@@ -6,7 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { PrimaryButton } from "./PrimaryButton";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { toast } from "sonner";
@@ -42,26 +48,28 @@ export function ContactSponsorshipForm() {
               <SectionLabel>Get in Touch</SectionLabel>
               <SectionHeading>Contact & Sponsorship</SectionHeading>
               <p className="text-slate-600 mb-8">
-                Whether you want to volunteer, sponsor, or learn more about our programs, we'd love to hear from you.
+                Whether you want to volunteer, sponsor, or learn more about our
+                programs, we'd love to hear from you.
               </p>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                    <MapPin className="size-5 text-blue-600" />
+                  <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+                    <MapPin className="size-5 text-purple-600" />
                   </div>
                   <div>
                     <h3 className="mb-1">Visit Us</h3>
                     <p className="text-slate-600 text-sm">
-                      123 Community Street<br />
+                      123 Community Street
+                      <br />
                       City, ST 12345
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                    <Phone className="size-5 text-blue-600" />
+                  <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+                    <Phone className="size-5 text-purple-600" />
                   </div>
                   <div>
                     <h3 className="mb-1">Call Us</h3>
@@ -70,12 +78,14 @@ export function ContactSponsorshipForm() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                    <Mail className="size-5 text-blue-600" />
+                  <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+                    <Mail className="size-5 text-purple-600" />
                   </div>
                   <div>
                     <h3 className="mb-1">Email Us</h3>
-                    <p className="text-slate-600 text-sm">info@communityoutreach.org</p>
+                    <p className="text-slate-600 text-sm">
+                      info@communityoutreach.org
+                    </p>
                   </div>
                 </div>
               </div>
@@ -95,7 +105,9 @@ export function ContactSponsorshipForm() {
                     <Input
                       id="name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       required
                     />
                   </div>
@@ -106,7 +118,9 @@ export function ContactSponsorshipForm() {
                       id="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       required
                     />
                   </div>
@@ -117,7 +131,9 @@ export function ContactSponsorshipForm() {
                       id="phone"
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
                     />
                   </div>
 
@@ -125,17 +141,29 @@ export function ContactSponsorshipForm() {
                     <Label htmlFor="sponsorshipType">I'm interested in</Label>
                     <Select
                       value={formData.sponsorshipType}
-                      onValueChange={(value) => setFormData({ ...formData, sponsorshipType: value })}
+                      onValueChange={(value) =>
+                        setFormData({ ...formData, sponsorshipType: value })
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select an option" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="volunteering">Volunteering</SelectItem>
-                        <SelectItem value="friend">Friend Sponsorship ($50/mo)</SelectItem>
-                        <SelectItem value="supporter">Supporter Sponsorship ($100/mo)</SelectItem>
-                        <SelectItem value="champion">Champion Sponsorship ($250/mo)</SelectItem>
-                        <SelectItem value="partnership">Partnership Opportunities</SelectItem>
+                        <SelectItem value="volunteering">
+                          Volunteering
+                        </SelectItem>
+                        <SelectItem value="friend">
+                          Friend Sponsorship ($50/mo)
+                        </SelectItem>
+                        <SelectItem value="supporter">
+                          Supporter Sponsorship ($100/mo)
+                        </SelectItem>
+                        <SelectItem value="champion">
+                          Champion Sponsorship ($250/mo)
+                        </SelectItem>
+                        <SelectItem value="partnership">
+                          Partnership Opportunities
+                        </SelectItem>
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
@@ -147,7 +175,9 @@ export function ContactSponsorshipForm() {
                       id="message"
                       rows={4}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       required
                     />
                   </div>

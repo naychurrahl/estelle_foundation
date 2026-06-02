@@ -17,10 +17,10 @@ export function VisionMission() {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           <FadeIn>
-            <Card className="h-full border-t-4 border-t-blue-600">
+            <Card className="h-full border-t-4 border-t-purple-600">
               <CardHeader>
-                <div className="size-14 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
-                  <Eye className="size-7 text-blue-600" />
+                <div className="size-14 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
+                  <Eye className="size-7 text-purple-600" />
                 </div>
                 <CardTitle className="text-2xl">Our Vision</CardTitle>
               </CardHeader>
@@ -36,10 +36,10 @@ export function VisionMission() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <Card className="h-full border-t-4 border-t-indigo-600">
+            <Card className="h-full border-t-4 border-t-purple-600">
               <CardHeader>
-                <div className="size-14 rounded-lg bg-indigo-100 flex items-center justify-center mb-4">
-                  <Target className="size-7 text-indigo-600" />
+                <div className="size-14 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
+                  <Target className="size-7 text-purple-600" />
                 </div>
                 <CardTitle className="text-2xl">Our Mission</CardTitle>
               </CardHeader>

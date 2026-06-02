@@ -2,7 +2,14 @@ import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Heart, Users, Sparkles, Shield, Lightbulb, HandHeart } from "lucide-react";
+import {
+  Heart,
+  Users,
+  Sparkles,
+  Shield,
+  Lightbulb,
+  HandHeart,
+} from "lucide-react";
 
 const values = [
   {
@@ -44,7 +51,8 @@ export function CoreValues() {
             <SectionLabel>What Drives Us</SectionLabel>
             <SectionHeading>Core Values</SectionHeading>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Our values guide every decision we make and shape the way we work with communities.
+              Our values guide every decision we make and shape the way we work
+              with communities.
             </p>
           </FadeIn>
         </div>
@@ -56,13 +64,15 @@ export function CoreValues() {
               <FadeIn key={value.title} delay={index * 0.1}>
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center mb-3">
-                      <Icon className="size-6 text-blue-600" />
+                    <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center mb-3">
+                      <Icon className="size-6 text-purple-600" />
                     </div>
                     <CardTitle>{value.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-600 text-sm">{value.description}</p>
+                    <p className="text-slate-600 text-sm">
+                      {value.description}
+                    </p>
                   </CardContent>
                 </Card>
               </FadeIn>

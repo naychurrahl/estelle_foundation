@@ -2,8 +2,20 @@ import { Link } from "react-router";
 import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { GraduationCap, Heart, TreePine, Users, ArrowRight } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import {
+  GraduationCap,
+  Heart,
+  TreePine,
+  Users,
+  ArrowRight,
+} from "lucide-react";
 import { PrimaryButton } from "./PrimaryButton";
 
 const programs = [
@@ -50,7 +62,8 @@ export function ProgramsPreview() {
             <SectionLabel>Our Impact</SectionLabel>
             <SectionHeading>Programs & Activities</SectionHeading>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Discover the diverse range of initiatives we run to create lasting positive change in our communities.
+              Discover the diverse range of initiatives we run to create lasting
+              positive change in our communities.
             </p>
           </FadeIn>
         </div>
@@ -69,8 +82,8 @@ export function ProgramsPreview() {
                     />
                   </div>
                   <CardHeader>
-                    <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center mb-3">
-                      <Icon className="size-6 text-blue-600" />
+                    <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center mb-3">
+                      <Icon className="size-6 text-purple-600" />
                     </div>
                     <CardTitle>{program.title}</CardTitle>
                     <CardDescription>{program.description}</CardDescription>

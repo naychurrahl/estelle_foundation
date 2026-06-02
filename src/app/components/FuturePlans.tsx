@@ -58,7 +58,8 @@ export function FuturePlans() {
             <SectionLabel>Looking Ahead</SectionLabel>
             <SectionHeading>Future Plans</SectionHeading>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Our roadmap for creating even greater impact in the communities we serve.
+              Our roadmap for creating even greater impact in the communities we
+              serve.
             </p>
           </FadeIn>
         </div>
@@ -68,15 +69,19 @@ export function FuturePlans() {
             const Icon = plan.icon;
             return (
               <FadeIn key={plan.title} delay={index * 0.1}>
-                <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-blue-600">
+                <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-purple-600">
                   <CardHeader className="h-full w-full flex items-center justify-center">
                     <div className="flex flex-row items-center justify-center gap-4 pb-4">
-                      <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                        <Icon className="size-6 text-blue-600" />
+                      <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+                        <Icon className="size-6 text-purple-600" />
                       </div>
                       <div>
-                        <CardTitle className="mb-2 font-medium">{plan.title}</CardTitle>
-                        <p className="text-slate-600 text-sm">{plan.description}</p>
+                        <CardTitle className="mb-2 font-medium">
+                          {plan.title}
+                        </CardTitle>
+                        <p className="text-slate-600 text-sm">
+                          {plan.description}
+                        </p>
                       </div>
                     </div>
                   </CardHeader>

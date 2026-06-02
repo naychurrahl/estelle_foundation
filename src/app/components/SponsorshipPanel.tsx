@@ -50,7 +50,10 @@ const tiers = [
 
 export function SponsorshipPanel() {
   return (
-    <section id="abt" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section
+      id="abt"
+      className="py-20 bg-gradient-to-br from-purple-50 to-purple-50"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <FadeIn className="flex flex-col gap-4 items-center">
@@ -103,13 +106,13 @@ export function SponsorshipPanel() {
             const Icon = tier.icon;
             return (
               <FadeIn key={tier.name} delay={index * 0.1}>
-                <Card className="h-full hover:shadow-xl transition-shadow border-t-4 border-t-blue-600">
+                <Card className="h-full hover:shadow-xl transition-shadow border-t-4 border-t-purple-600">
                   <CardHeader className="text-center">
-                    <div className="size-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
-                      <Icon className="size-8 text-blue-600" />
+                    <div className="size-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+                      <Icon className="size-8 text-purple-600" />
                     </div>
                     <CardTitle className="text-2xl">{tier.name}</CardTitle>
-                    <div className="text-3xl text-blue-600 mt-2">
+                    <div className="text-3xl text-purple-600 mt-2">
                       {tier.amount}
                     </div>
                   </CardHeader>

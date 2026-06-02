@@ -12,13 +12,14 @@ export default function AboutUs() {
       <Header />
       <main className="flex-1">
         {/* Page Header */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <section className="py-20 bg-gradient-to-r from-purple-600 to-purple-600 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <FadeIn>
               <div className="max-w-3xl">
                 <h1 className="text-5xl mb-6">About Us</h1>
-                <p className="text-xl text-blue-100">
-                  Learn more about our journey, values, and the dedicated team working to create positive change in communities worldwide.
+                <p className="text-xl text-purple-100">
+                  Learn more about our journey, values, and the dedicated team
+                  working to create positive change in communities worldwide.
                 </p>
               </div>
             </FadeIn>

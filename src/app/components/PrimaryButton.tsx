@@ -8,7 +8,7 @@ interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export function PrimaryButton({ children, ...props }: PrimaryButtonProps) {
   return (
     <Button
-      className="bg-blue-600 hover:bg-blue-700 text-white"
+      className="bg-purple-600 hover:bg-purple-700 text-white"
       {...props}
     >
       {children}
