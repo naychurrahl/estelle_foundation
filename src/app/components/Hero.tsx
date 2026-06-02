@@ -18,7 +18,7 @@ export function Hero() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl text-white">
           <h1 className="text-5xl md:text-6xl mb-6">
-            Building Stronger Communities Together
+            Keep A Child in School: Empowering Futures Through Education.
           </h1>
           <p className="text-xl text-slate-200 mb-8">
             Join us in making a lasting impact through education, empowerment,
@@ -31,11 +31,11 @@ export function Hero() {
                 <ArrowRight className="ml-2 size-5" />
               </PrimaryButton>
             </Link>
-            <Link to="/about">
+            <a href="#abt">
               <OutlineButton className="text-lg px-8 py-6 border-white hover:bg-white/10">
                 Learn More
               </OutlineButton>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

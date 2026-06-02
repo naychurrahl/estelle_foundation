@@ -9,27 +9,35 @@ import { PrimaryButton } from "./PrimaryButton";
 const programs = [
   {
     icon: GraduationCap,
-    title: "Education & Literacy",
-    description: "Providing access to quality education, tutoring programs, and scholarship opportunities for underprivileged youth.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGVkdWNhdGlvbiUyMGxlYXJuaW5nfGVufDF8fHx8MTc4MDM3MjkyOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    title: "Scholarship Program",
+    description:
+      "An annual scholarship initiative aimed at covering tuition and exam fees for underprivileged children at various educational stages (SSCE, JAMB, tertiary education).",
+    image:
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGVkdWNhdGlvbiUyMGxlYXJuaW5nfGVufDF8fHx8MTc4MDM3MjkyOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   },
   {
     icon: Heart,
-    title: "Healthcare Access",
-    description: "Organizing health camps, awareness programs, and ensuring essential medical services reach remote communities.",
-    image: "https://images.unsplash.com/photo-1674574124567-79b2ee3d22fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGFyaXR5JTIwZnVuZHJhaXNpbmclMjBldmVudHxlbnwxfHx8fDE3ODAyMzM4ODF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    title: "Special Needs Education Fund",
+    description:
+      "An annual fund dedicated to supporting children with disabilities and special needs through the provision of special learning resources and adaptive technologies.",
+    image:
+      "https://images.unsplash.com/photo-1674574124567-79b2ee3d22fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGFyaXR5JTIwZnVuZHJhaXNpbmclMjBldmVudHxlbnwxfHx8fDE3ODAyMzM4ODF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   },
   {
     icon: TreePine,
-    title: "Environmental Conservation",
-    description: "Leading tree plantation drives, clean-up campaigns, and promoting sustainable living practices.",
-    image: "https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwY29uc2VydmF0aW9uJTIwbmF0dXJlfGVufDF8fHx8MTc4MDI4MzgzN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    title: "Advocacy & Awareness Campaigns",
+    description:
+      "Yearly campaigns aligned with International Days such as International Girl Child Day and Suicide Prevention Day, focused on raising awareness about the importance of education and mental health.",
+    image:
+      "https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwY29uc2VydmF0aW9uJTIwbmF0dXJlfGVufDF8fHx8MTc4MDI4MzgzN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   },
   {
     icon: Users,
-    title: "Youth Development",
-    description: "Empowering young minds through skill training, mentorship programs, and leadership workshops.",
-    image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3V0aCUyMHNwb3J0cyUyMGFjdGl2aXR5fGVufDF8fHx8MTc4MDM4Mzk5MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    title: "Community Educational Outreach",
+    description:
+      "Annual community engagement events such as book donation drives, seminars for parents on child education, and career mentorship programs for youth.",
+    image:
+      "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx5b3V0aCUyMHNwb3J0cyUyMGFjdGl2aXR5fGVufDF8fHx8MTc4MDM4Mzk5MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   },
 ];
 

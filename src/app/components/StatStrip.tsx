@@ -1,10 +1,10 @@
 import { FadeIn } from "./FadeIn";
 
 const stats = [
-  { value: "10K+", label: "Lives Impacted" },
-  { value: "50+", label: "Active Programs" },
-  { value: "500+", label: "Volunteers" },
-  { value: "25+", label: "Partner Organizations" },
+  { value: "2K+", label: "Students Reached" },
+  { value: "50+", label: "Schools Reached" },
+  { value: "50+", label: "Volunteers" },
+  { value: "3+", label: "Years of Impact" },
 ];
 
 export function StatStrip() {

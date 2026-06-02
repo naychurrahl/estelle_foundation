@@ -7,23 +7,45 @@ import { Target, Lightbulb, Rocket, Users } from "lucide-react";
 const plans = [
   {
     icon: Target,
-    title: "Expand Rural Education",
-    description: "Launch 20 new learning centers in underserved rural areas by 2027, reaching 5,000 additional students.",
+    title: "Expansion of Educational Support",
+    description:
+      "As Estelle Education Foundation continues to grow,the goal is to increase the number of children we sponsor through school, especially in higher education, by providing university scholarships.",
   },
   {
-    icon: Lightbulb,
-    title: "Digital Literacy Program",
-    description: "Introduce technology training for 3,000 community members to bridge the digital divide.",
+    icon: Target,
+    title: "Establishing Learning Centers",
+    description:
+      "Setting up learnin gcenters in underprivileged areas that will offer after-school programs, special needs education, and access to learning materials",
   },
   {
-    icon: Rocket,
-    title: "Women Entrepreneurship",
-    description: "Support 500 women-led startups with training, mentorship, and micro-financing opportunities.",
+    icon: Target,
+    title: "Digital Education",
+    description:
+      "Providing access to online learning platforms, ensuring that children in rural and urban areas can receive digital literacy training",
   },
   {
-    icon: Users,
-    title: "Youth Leadership Academy",
-    description: "Establish a comprehensive leadership development program for 1,000 young changemakers annually.",
+    icon: Target,
+    title: "Strategic Partnerships",
+    description:
+      "Collaborating with local and international organisations to widen our reach and provide more comprehensive support for children’s education and welfare",
+  },
+  {
+    icon: Target,
+    title: "The Girl Rescript Initiative",
+    description:
+      "Reintegrating girls who dropped out of school due to early marriage or teenage pregnancy back into the economic system by identifying, training, and empowering them through vocational skills and enterprise support",
+  },
+  {
+    icon: Target,
+    title: "Adopt a Future Program",
+    description:
+      "Connecting less privileged children with sponsors who commit to funding their secondary education, including school fees, books, and essentials, while receiving regular academic reports and progress updates from the Foundation",
+  },
+  {
+    icon: Target,
+    title: "Guardian Legacy Initiative",
+    description:
+      "Establishing a secure trust fund system where parents entrust the Foundation with their children’s educational future, ensuring continuous school support, representation, and care; even in their absence.",
   },
 ];
 
@@ -41,19 +63,19 @@ export function FuturePlans() {
           </FadeIn>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-4 gap-6">
           {plans.map((plan, index) => {
             const Icon = plan.icon;
             return (
               <FadeIn key={plan.title} delay={index * 0.1}>
                 <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-blue-600">
-                  <CardHeader>
-                    <div className="flex items-start gap-4">
+                  <CardHeader className="h-full w-full flex items-center justify-center">
+                    <div className="flex flex-row items-center justify-center gap-4 pb-4">
                       <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
                         <Icon className="size-6 text-blue-600" />
                       </div>
                       <div>
-                        <CardTitle className="mb-2">{plan.title}</CardTitle>
+                        <CardTitle className="mb-2 font-medium">{plan.title}</CardTitle>
                         <p className="text-slate-600 text-sm">{plan.description}</p>
                       </div>
                     </div>

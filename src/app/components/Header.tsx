@@ -1,11 +1,7 @@
 import { Link } from "react-router";
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "./ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export function Header() {
   const navigation = [
@@ -20,10 +16,17 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="size-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold">
+            <div className="h-30 aspect-[16/9] flex items-center justify-center">
+              <img
+                src="/logo.png"
+                alt="Estelle Foundation Logo"
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
+            {/*<div className="size-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold">
               EF
             </div>
-            <span className="text-xl">Estelle Foundation</span>
+             <span className="text-xl">Estelle Foundation</span> */}
           </Link>
 
           {/* Desktop Navigation */}
