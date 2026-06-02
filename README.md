@@ -1,7 +1,7 @@
 
-  # One-Page NGO Website
+  # Website Structure Overview
 
-  This is a code bundle for One-Page NGO Website. The original project is available at https://www.figma.com/design/F9EfMSSeaygPIR6fwdOpTo/One-Page-NGO-Website.
+  This is a code bundle for Website Structure Overview. The original project is available at https://www.figma.com/design/lt3moBWELLVTkzBcXpcRtE/Website-Structure-Overview.
 
   ## Running the code
 

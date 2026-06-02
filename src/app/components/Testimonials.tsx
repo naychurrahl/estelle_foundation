@@ -1,31 +1,63 @@
-import { organizationInfo } from "@/app/data/ngoData";
-import { Mail, Phone, MapPin, Globe, Facebook, Twitter, Instagram, Linkedin, Heart } from "lucide-react";
+import { FadeIn } from "./FadeIn";
+import { SectionLabel } from "./SectionLabel";
+import { SectionHeading } from "./SectionHeading";
+import { Card, CardContent } from "./ui/card";
+import { Quote } from "lucide-react";
+
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "Volunteer Coordinator",
+    content: "Being part of Community Outreach has been life-changing. Seeing the direct impact we make in people's lives drives me to do more every day.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+  },
+  {
+    name: "Michael Chen",
+    role: "Program Beneficiary",
+    content: "The education program gave me opportunities I never thought possible. Today, I'm pursuing my dream of becoming an engineer, thanks to their support.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+  },
+  {
+    name: "Priya Patel",
+    role: "Corporate Sponsor",
+    content: "Partnering with Community Outreach aligns perfectly with our values. Their transparency and measurable impact make them an ideal organization to support.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+  },
+];
 
 export function Testimonials() {
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl text-center mb-12 text-gray-900">
-          Testimonials
-        </h2>
-        <p className="text-2xl md:text-2xl text-center mb-12 text-gray-600">
-          Things people have to say about { organizationInfo.name}.
-        </p>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white p-8 rounded-lg shadow-md text-center">
-            <h3 className="text-xl mb-3 text-gray-900">
-              "Phindol Insurance Brokers saved me 35% on my Toyota Corolla
-              insurance in Abuja. Super fast!"
-            </h3>
-            <p className="text-gray-600">– Chinedu O., Abuja</p>
-          </div>
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <FadeIn>
+            <SectionLabel>Voices from Our Community</SectionLabel>
+            <SectionHeading>Testimonials</SectionHeading>
+          </FadeIn>
+        </div>
 
-          <div className="bg-white p-8 rounded-lg shadow-md text-center">
-            <h3 className="text-xl mb-3 text-gray-900">
-              "Best health insurance brokers in Nigeria. Seamless process!"
-            </h3>
-            <p className="text-gray-600">– Fatima A., Abuja</p>
-          </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <FadeIn key={testimonial.name} delay={index * 0.1}>
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <Quote className="size-8 text-blue-600 mb-4" />
+                  <p className="text-slate-600 mb-6">{testimonial.content}</p>
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="size-12 rounded-full object-cover"
+                    />
+                    <div>
+                      <div>{testimonial.name}</div>
+                      <div className="text-sm text-slate-500">{testimonial.role}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </FadeIn>
+          ))}
         </div>
       </div>
     </section>

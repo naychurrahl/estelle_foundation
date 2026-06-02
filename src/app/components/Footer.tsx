@@ -1,149 +1,112 @@
-import { organizationInfo } from "@/app/data/ngoData";
-import { Mail, Phone, MapPin, Globe, Facebook, Twitter, Instagram, Linkedin, Heart } from "lucide-react";
+import { Link } from "react-router";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-orange-600 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-slate-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Heart className="w-6 h-6 text-orange-500" />
-              <h3 className="text-xl">{organizationInfo.name}</h3>
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="size-8 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white text-sm">
+                CO
+              </div>
+              <span className="text-lg">Community Outreach</span>
             </div>
-            <p className="text-gray-400 leading-relaxed mb-4">
-              {organizationInfo.motto}
+            <p className="text-slate-400 text-sm">
+              Empowering communities through education, support, and sustainable development.
             </p>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-xl mb-4">Contact Us</h3>
-            <div className="space-y-3 text-gray-400">
-              
-              <div className="flex items-start gap-3">
-                <Globe className="w-5 h-5 flex-shrink-0 mt-1" />
-                <a
-                  href={`https://${organizationInfo.contact.website.values[0]}`}
-                  className="hover:text-orange-500 transition-colors"
-                >
-                  {organizationInfo.contact.website.values[0]}
-                </a>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 flex-shrink-0 mt-1" />
-                <a
-                  href={`mailto:${organizationInfo.contact.email.values[0]}`}
-                  className="hover:text-orange-500 transition-colors"
-                >
-                  {organizationInfo.contact.email.values[0]}
-                </a>
-              </div>
-
-              <div className="flex items-start gap-2">
-                <Phone className="w-5 h-5 flex-shrink-0 mt-1" />
-                <a
-                  href={`tel:${organizationInfo.contact.phone.values[0]}`}
-                  className="hover:text-orange-500 transition-colors"
-                >
-                  {organizationInfo.contact.phone.values[0]}
-                </a>, 
-                <a
-                  href={`tel:${organizationInfo.contact.phone.values[1]}`}
-                  className="hover:text-orange-500 transition-colors"
-                >
-                  {organizationInfo.contact.phone.values[1]}
-                </a>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 flex-shrink-0 mt-1" />
-                <span>{organizationInfo.contact.address.values[0]}</span>
-              </div>
-            
-            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h3 className="mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="#about"
-                  className="hover:text-orange-500 transition-colors"
-                >
+                <Link to="/" className="text-slate-400 hover:text-white transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-slate-400 hover:text-white transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#projects"
-                  className="hover:text-orange-500 transition-colors"
-                >
-                  Our Projects
-                </a>
+                <Link to="/gallery" className="text-slate-400 hover:text-white transition-colors">
+                  Gallery
+                </Link>
               </li>
               <li>
-                <a
-                  href="#get-involved"
-                  className="hover:text-orange-500 transition-colors"
-                >
-                  Get Involved
-                </a>
+                <Link to="/contact" className="text-slate-400 hover:text-white transition-colors">
+                  Contact
+                </Link>
               </li>
-              <li>
-                <a href="#" className="hover:text-orange-500 transition-colors">
-                  Annual Reports
-                </a>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="mb-4">Contact Us</h3>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li className="flex items-start gap-2">
+                <MapPin className="size-4 mt-0.5 shrink-0" />
+                <span>123 Community Street, City, ST 12345</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="size-4 shrink-0" />
+                <span>(555) 123-4567</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="size-4 shrink-0" />
+                <span>info@communityoutreach.org</span>
               </li>
             </ul>
           </div>
 
           {/* Social Media */}
           <div>
-            <h3 className="text-xl mb-4">Follow Us</h3>
-            <p className="text-gray-400 mb-4">
-              Stay connected with our work and impact
-            </p>
+            <h3 className="mb-4">Follow Us</h3>
             <div className="flex gap-3">
               <a
-                href="#"
-                className="bg-gray-800 p-3 rounded-full hover:bg-orange-600 transition-colors"
-                aria-label="Facebook"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-9 rounded-full bg-slate-800 hover:bg-blue-600 flex items-center justify-center transition-colors"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="size-4" />
               </a>
               <a
-                href="#"
-                className="bg-gray-800 p-3 rounded-full hover:bg-orange-600 transition-colors"
-                aria-label="Twitter"
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-9 rounded-full bg-slate-800 hover:bg-blue-400 flex items-center justify-center transition-colors"
               >
-                <Twitter className="w-5 h-5" />
+                <Twitter className="size-4" />
               </a>
               <a
-                href="#"
-                className="bg-gray-800 p-3 rounded-full hover:bg-orange-600 transition-colors"
-                aria-label="Instagram"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-9 rounded-full bg-slate-800 hover:bg-pink-600 flex items-center justify-center transition-colors"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="size-4" />
               </a>
               <a
-                href="#"
-                className="bg-gray-800 p-3 rounded-full hover:bg-orange-600 transition-colors"
-                aria-label="LinkedIn"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-9 rounded-full bg-slate-800 hover:bg-blue-700 flex items-center justify-center transition-colors"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="size-4" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2026 {organizationInfo.name}. All rights reserved.</p>
+        <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-400">
+          <p>&copy; {new Date().getFullYear()} Community Outreach. All rights reserved.</p>
         </div>
       </div>
     </footer>

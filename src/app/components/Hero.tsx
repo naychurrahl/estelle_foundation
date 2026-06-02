@@ -1,43 +1,44 @@
-import { organizationInfo } from "@/app/data/ngoData";
-import { Heart } from "lucide-react";
+import { Link } from "react-router";
+import { ArrowRight } from "lucide-react";
+import { PrimaryButton } from "./PrimaryButton";
+import { OutlineButton } from "./OutlineButton";
 
 export function Hero() {
-  {/* <div className="relative bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400 text-white"> */}
   return (
-    <div className="relative bg-gradient-to-br from-orange-600/30 via-orange-500 to-orange-400 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-24 md:py-32">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl mb-6">{organizationInfo.name}</h1>
-          <p className="text-2xl md:text-3xl text-orange-100 mb-8 italic">
-            "{organizationInfo.motto}"
+    <section className="relative min-h-[600px] flex items-center">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1628717341663-0007b0ee2597?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjB2b2x1bnRlZXJzJTIwaGVscGluZ3xlbnwxfHx8fDE3ODAyMjgyNDJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')`,
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/70" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl text-white">
+          <h1 className="text-5xl md:text-6xl mb-6">
+            Building Stronger Communities Together
+          </h1>
+          <p className="text-xl text-slate-200 mb-8">
+            Join us in making a lasting impact through education, empowerment,
+            and sustainable development initiatives.
           </p>
-          <p className="text-xl text-orange-50 leading-relaxed max-w-3xl mx-auto">
-            {organizationInfo.mission}
-          </p>
-          <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#get-involved"
-              className="px-8 py-4 bg-cream-100 text-cream-100 rounded-full hover:bg-orange-600 transition-colors shadow-lg text-lg"
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--color-cream-100)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--color-orange-800)")
-              }
-            >
-              Get Involved
-            </a>
-            <a
-              href="#projects"
-              className="px-8 py-4 bg-orange-700 text-white rounded-full hover:bg-orange-600 transition-colors shadow-lg text-lg"
-            >
-              Our Projects
-            </a>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/contact">
+              <PrimaryButton className="text-lg px-8 py-6 hover:bg-white/10">
+                Get Involved
+                <ArrowRight className="ml-2 size-5" />
+              </PrimaryButton>
+            </Link>
+            <Link to="/about">
+              <OutlineButton className="text-lg px-8 py-6 border-white hover:bg-white/10">
+                Learn More
+              </OutlineButton>
+            </Link>
           </div>
         </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-cream-50 to-transparent"></div>
-    </div>
+    </section>
   );
 }

@@ -1,33 +1,71 @@
-import { organizationInfo } from "@/app/data/ngoData";
-import { Shield, Heart, Sprout, Lightbulb, Users } from "lucide-react";
+import { FadeIn } from "./FadeIn";
+import { SectionLabel } from "./SectionLabel";
+import { SectionHeading } from "./SectionHeading";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Heart, Users, Sparkles, Shield, Lightbulb, HandHeart } from "lucide-react";
 
-const icons = [Shield, Heart, Sprout, Lightbulb, Users];
+const values = [
+  {
+    icon: Heart,
+    title: "EQUITY",
+    description:
+      "We believe in equal educational opportunities for every child.",
+  },
+  {
+    icon: Users,
+    title: "INCLUSIVITY",
+    description: "We are committed to supporting children with special needs.",
+  },
+  {
+    icon: Sparkles,
+    title: "ADVOCACY",
+    description: "We raise awareness on social issues affecting children.",
+  },
+  {
+    icon: Shield,
+    title: "SUSTAINABILITY",
+    description:
+      "We provide long-term support to ensure continued education and growth.",
+  },
+  {
+    icon: Lightbulb,
+    title: "EMPOWERMENT",
+    description:
+      "We focus on personal and educational empowerment for underprivileged youth.",
+  },
+];
 
 export function CoreValues() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-orange-50 to-cream-100">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 bg-slate-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl mb-4">Our Core Values</h2>
-          <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            These principles guide everything we do and define who we are
-          </p>
+          <FadeIn>
+            <SectionLabel>What Drives Us</SectionLabel>
+            <SectionHeading>Core Values</SectionHeading>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Our values guide every decision we make and shape the way we work with communities.
+            </p>
+          </FadeIn>
         </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {organizationInfo.coreValues.map((value, index) => {
-            const Icon = icons[index % icons.length];
+          {values.map((value, index) => {
+            const Icon = value.icon;
             return (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="bg-orange-100 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                  <Icon className="w-7 h-7 text-orange-600" />
-                </div>
-                <h3 className="text-xl mb-3 text-orange-600">{value.title}</h3>
-                <p className="text-gray-700 leading-relaxed">{value.description}</p>
-              </div>
+              <FadeIn key={value.title} delay={index * 0.1}>
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="size-12 rounded-lg bg-blue-100 flex items-center justify-center mb-3">
+                      <Icon className="size-6 text-blue-600" />
+                    </div>
+                    <CardTitle>{value.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-600 text-sm">{value.description}</p>
+                  </CardContent>
+                </Card>
+              </FadeIn>
             );
           })}
         </div>
