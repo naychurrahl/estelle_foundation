@@ -3,35 +3,11 @@ import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
 import { Card, CardContent } from "./ui/card";
 import { Quote } from "lucide-react";
-
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    role: "Volunteer Coordinator",
-    content:
-      "Being part of Community Outreach has been life-changing. Seeing the direct impact we make in people's lives drives me to do more every day.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Michael Chen",
-    role: "Program Beneficiary",
-    content:
-      "The education program gave me opportunities I never thought possible. Today, I'm pursuing my dream of becoming an engineer, thanks to their support.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-  },
-  {
-    name: "Priya Patel",
-    role: "Corporate Sponsor",
-    content:
-      "Partnering with Community Outreach aligns perfectly with our values. Their transparency and measurable impact make them an ideal organization to support.",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
-  },
-];
+import { getSiteContent } from "@/app/lib/siteContent";
 
 export function Testimonials() {
+  const { testimonials } = getSiteContent();
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

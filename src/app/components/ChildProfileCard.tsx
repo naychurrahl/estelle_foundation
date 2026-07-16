@@ -3,7 +3,7 @@ import { Badge } from "./ui/badge";
 import { Dialog, DialogTrigger } from "./ui/dialog";
 import { PrimaryButton } from "./PrimaryButton";
 import { SponsorCommitmentForm } from "./SponsorCommitmentForm";
-import type { Child } from "@/app/data/children";
+import type { Child } from "@/app/lib/aafStore";
 
 const statusLabel: Record<Child["status"], string> = {
   available: "Available",
@@ -50,7 +50,7 @@ export function ChildProfileCard({ child }: { child: Child }) {
               Sponsor {child.firstName}
             </PrimaryButton>
           </DialogTrigger>
-          <SponsorCommitmentForm childName={child.firstName} />
+          <SponsorCommitmentForm childId={child.id} childName={child.firstName} />
         </Dialog>
       </div>
     </Card>

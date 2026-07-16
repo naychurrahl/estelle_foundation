@@ -1,13 +1,9 @@
 import { FadeIn } from "./FadeIn";
-
-const stats = [
-  { value: "2K+", label: "Students Reached" },
-  { value: "50+", label: "Schools Reached" },
-  { value: "50+", label: "Volunteers" },
-  { value: "3+", label: "Years of Impact" },
-];
+import { getSiteContent } from "@/app/lib/siteContent";
 
 export function StatStrip() {
+  const { stats } = getSiteContent();
+
   return (
     <section className="py-16 bg-gradient-to-r from-purple-600 to-purple-800 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

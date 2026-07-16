@@ -1,17 +1,11 @@
 import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
-
-const partners = [
-  { name: "Global Foundation", logo: "GF" },
-  { name: "Education First", logo: "EF" },
-  { name: "Health Alliance", logo: "HA" },
-  { name: "Green Earth", logo: "GE" },
-  { name: "Youth Empowerment", logo: "YE" },
-  { name: "Tech for Good", logo: "TG" },
-];
+import { getSiteContent } from "@/app/lib/siteContent";
 
 export function Partners() {
+  const { partners } = getSiteContent();
+
   return (
     <section className="py-20 bg-slate-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

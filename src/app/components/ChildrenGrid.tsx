@@ -11,7 +11,7 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "./ui/pagination";
-import { children as allChildren } from "@/app/data/children";
+import { getChildren } from "@/app/lib/aafStore";
 
 const PAGE_SIZE = 3;
 
@@ -20,7 +20,7 @@ export function ChildrenGrid() {
 
   // Once a child is spoken for, they come off the public list - this also
   // avoids two sponsors committing to the same child at once.
-  const availableChildren = allChildren.filter(
+  const availableChildren = getChildren().filter(
     (child) => child.status === "available",
   );
 

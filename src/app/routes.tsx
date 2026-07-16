@@ -4,6 +4,10 @@ import AboutUs from "./pages/AboutUs";
 import Gallery from "./pages/Gallery";
 import ContactUs from "@/app/pages/ContactUs";
 import AdoptAFuture from "@/app/pages/AdoptAFuture";
+import AdminLogin from "@/app/pages/AdminLogin";
+import AdminDashboard from "@/app/pages/AdminDashboard";
+import AdminAAF from "@/app/pages/AdminAAF";
+import AdminContent from "@/app/pages/AdminContent";
 
 export const router = createBrowserRouter([
   {
@@ -25,5 +29,21 @@ export const router = createBrowserRouter([
   {
     path: "/adopt-a-future",
     Component: AdoptAFuture,
+  },
+  {
+    path: "/admin/login",
+    Component: AdminLogin,
+  },
+  {
+    path: "/admin",
+    Component: AdminDashboard,
+  },
+  {
+    path: "/admin/aaf",
+    Component: AdminAAF,
+  },
+  {
+    path: "/admin/content",
+    Component: AdminContent,
   },
 ]);

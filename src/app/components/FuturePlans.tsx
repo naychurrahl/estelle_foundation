@@ -3,55 +3,12 @@ import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Target, Lightbulb, Rocket, Users } from "lucide-react";
-
-const plans = [
-  {
-    icon: Target,
-    title: "Expansion of Educational Support",
-    description:
-      "As Estelle Education Foundation continues to grow,the goal is to increase the number of children we sponsor through school, especially in higher education, by providing university scholarships.",
-  },
-  {
-    icon: Target,
-    title: "Establishing Learning Centers",
-    description:
-      "Setting up learnin gcenters in underprivileged areas that will offer after-school programs, special needs education, and access to learning materials",
-  },
-  {
-    icon: Target,
-    title: "Digital Education",
-    description:
-      "Providing access to online learning platforms, ensuring that children in rural and urban areas can receive digital literacy training",
-  },
-  {
-    icon: Target,
-    title: "Strategic Partnerships",
-    description:
-      "Collaborating with local and international organisations to widen our reach and provide more comprehensive support for children’s education and welfare",
-  },
-  {
-    icon: Target,
-    title: "The Girl Rescript Initiative",
-    description:
-      "Reintegrating girls who dropped out of school due to early marriage or teenage pregnancy back into the economic system by identifying, training, and empowering them through vocational skills and enterprise support",
-  },
-  {
-    icon: Target,
-    title: "Adopt a Future Program",
-    description:
-      "Connecting less privileged children with sponsors who commit to funding their secondary education, including school fees, books, and essentials, while receiving regular academic reports and progress updates from the Foundation",
-    href: "/adopt-a-future",
-  },
-  {
-    icon: Target,
-    title: "Guardian Legacy Initiative",
-    description:
-      "Establishing a secure trust fund system where parents entrust the Foundation with their children’s educational future, ensuring continuous school support, representation, and care; even in their absence.",
-  },
-];
+import { getSiteContent } from "@/app/lib/siteContent";
+import { getIcon } from "@/app/lib/icons";
 
 export function FuturePlans() {
+  const { futurePlans: plans } = getSiteContent();
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,7 +25,7 @@ export function FuturePlans() {
 
         <div className="grid md:grid-cols-4 gap-6">
           {plans.map((plan, index) => {
-            const Icon = plan.icon;
+            const Icon = getIcon(plan.icon);
             const card = (
               <Card
                 className={`h-full border-l-4 border-l-purple-600 transition-shadow hover:shadow-lg ${

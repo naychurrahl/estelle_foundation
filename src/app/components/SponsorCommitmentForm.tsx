@@ -12,18 +12,24 @@ import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { PrimaryButton } from "./PrimaryButton";
 import { CheckCircle2 } from "lucide-react";
+import { addCommitment, type CommitmentTier } from "@/app/lib/aafStore";
 
 type SponsorCommitmentFormProps = {
+  childId: string;
   childName: string;
 };
 
-// Client-side only for now (no backend yet - see the Adopt-a-Future plan).
-// "Submitting" just moves to the bank-transfer instructions from the
-// handbook; nothing is sent anywhere.
-export function SponsorCommitmentForm({ childName }: SponsorCommitmentFormProps) {
+// No backend yet (see the Adopt-a-Future plan) - "submitting" records the
+// commitment in the localStorage-backed aafStore (so it shows up in the
+// admin CMS's Commitments tab) then moves to the handbook's bank-transfer
+// instructions; nothing goes over the network.
+export function SponsorCommitmentForm({
+  childId,
+  childName,
+}: SponsorCommitmentFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    tier: "full",
+    tier: "full" as CommitmentTier,
     sponsorName: "",
     sponsorEmail: "",
     sponsorPhone: "",
@@ -32,6 +38,7 @@ export function SponsorCommitmentForm({ childName }: SponsorCommitmentFormProps)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    addCommitment({ childId, childName, ...formData });
     toast.success(`Thank you for committing to sponsor ${childName}!`);
     setSubmitted(true);
   };
@@ -91,7 +98,7 @@ export function SponsorCommitmentForm({ childName }: SponsorCommitmentFormProps)
           <RadioGroup
             value={formData.tier}
             onValueChange={(value) =>
-              setFormData({ ...formData, tier: value })
+              setFormData({ ...formData, tier: value as CommitmentTier })
             }
             className="mt-2"
           >
