@@ -19,10 +19,9 @@ type SponsorCommitmentFormProps = {
   childName: string;
 };
 
-// No backend yet (see the Adopt-a-Future plan) - "submitting" records the
-// commitment in the localStorage-backed aafStore (so it shows up in the
-// admin CMS's Commitments tab) then moves to the handbook's bank-transfer
-// instructions; nothing goes over the network.
+// Records the commitment via the real /commitments API (shows up in the
+// admin CMS's Commitments tab), then moves to the handbook's bank-transfer
+// instructions.
 export function SponsorCommitmentForm({
   childId,
   childName,
@@ -36,11 +35,17 @@ export function SponsorCommitmentForm({
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    addCommitment({ childId, childName, ...formData });
-    toast.success(`Thank you for committing to sponsor ${childName}!`);
-    setSubmitted(true);
+    try {
+      await addCommitment({ childId, childName, ...formData });
+      toast.success(`Thank you for committing to sponsor ${childName}!`);
+      setSubmitted(true);
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "Failed to submit commitment",
+      );
+    }
   };
 
   if (submitted) {

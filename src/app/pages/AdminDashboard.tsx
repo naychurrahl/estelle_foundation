@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router";
-import { getSession, logout, canAccess } from "@/app/lib/adminAuth";
-import { ProtectedAdminRoute } from "@/app/components/admin/ProtectedAdminRoute";
+import { logout, canAccess } from "@/app/lib/adminAuth";
+import {
+  ProtectedAdminRoute,
+  useAdminSession,
+} from "@/app/components/admin/ProtectedAdminRoute";
 import {
   Card,
   CardHeader,
@@ -10,7 +13,7 @@ import {
 import { Button } from "@/app/components/ui/button";
 
 function DashboardContent() {
-  const session = getSession();
+  const session = useAdminSession();
   const navigate = useNavigate();
 
   return (
@@ -25,8 +28,8 @@ function DashboardContent() {
           </div>
           <Button
             variant="outline"
-            onClick={() => {
-              logout();
+            onClick={async () => {
+              await logout();
               navigate("/admin/login");
             }}
           >

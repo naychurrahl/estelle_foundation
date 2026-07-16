@@ -1,69 +1,33 @@
-// Mock, client-side-only auth for gating the CMS while there's no backend.
-// The accounts below ship in the JS bundle and are trivially readable - this
-// is NOT real access control, just an interim UI gate so different admins
-// see different sections. Replace with real server-side auth once a backend
-// exists.
+// Admin auth against the real backend - session lives in the httpOnly JWT
+// cookie `/auth` issues, so getSession() has to ask the server (`ping`)
+// rather than read anything client-side.
+import { ApiRequest, baseUrl } from "@/app/components/ApiRequest";
+
 export type AdminRole = "admin" | "content-admin" | "sponsorship-admin";
 export type AdminModule = "aaf" | "content";
 
-type AdminAccount = {
-  email: string;
-  password: string;
-  role: AdminRole;
+export type AdminSession = {
+  id: string;
   name: string;
+  email: string;
+  role: AdminRole;
 };
 
-const ACCOUNTS: AdminAccount[] = [
-  {
-    email: "admin@estelle.org",
-    password: "estelle-admin",
-    role: "admin",
-    name: "Foundation Admin",
-  },
-  {
-    email: "content@estelle.org",
-    password: "estelle-content",
-    role: "content-admin",
-    name: "Content Editor",
-  },
-  {
-    email: "sponsorship@estelle.org",
-    password: "estelle-sponsorship",
-    role: "sponsorship-admin",
-    name: "Sponsorship Coordinator",
-  },
-];
-
-export type AdminSession = { email: string; name: string; role: AdminRole };
-
-const SESSION_KEY = "estelle-admin-session";
-
-export function login(email: string, password: string): AdminSession | null {
-  const account = ACCOUNTS.find(
-    (a) => a.email === email && a.password === password,
-  );
-  if (!account) return null;
-
-  const session: AdminSession = {
-    email: account.email,
-    name: account.name,
-    role: account.role,
-  };
-  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-  return session;
+export async function login(email: string, password: string): Promise<AdminSession> {
+  return ApiRequest({
+    url: `${baseUrl}/auth`,
+    method: "POST",
+    body: { email, password },
+  });
 }
 
-export function logout(): void {
-  localStorage.removeItem(SESSION_KEY);
+export async function logout(): Promise<void> {
+  await ApiRequest({ url: `${baseUrl}/auth`, method: "DELETE" });
 }
 
-export function getSession(): AdminSession | null {
-  try {
-    const raw = localStorage.getItem(SESSION_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
+export async function getSession(): Promise<AdminSession | null> {
+  const res = await ApiRequest({ url: `${baseUrl}/auth` });
+  return res.status === "in" ? res.user : null;
 }
 
 export function canAccess(

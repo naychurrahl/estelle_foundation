@@ -1,7 +1,8 @@
 import { Link } from "react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SiTiktok, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
-import { getSiteContent, type SocialLink } from "@/app/lib/siteContent";
+import { type SocialLink } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 
 const SOCIAL_ICONS: Record<SocialLink["platform"], typeof SiInstagram> = {
   instagram: SiInstagram,
@@ -16,7 +17,7 @@ const SOCIAL_HOVER: Record<SocialLink["platform"], string> = {
 };
 
 export function Footer() {
-  const { footer } = getSiteContent();
+  const { footer } = useSiteContent();
   const { tagline, address, phones, email, quickLinks, social, copyrightName } =
     footer;
 

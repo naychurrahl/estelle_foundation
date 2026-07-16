@@ -12,8 +12,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-// Content is stored as an icon *name* (serializable to localStorage/JSON),
-// resolved through this map wherever it needs to render as a component.
+// Content is stored as an icon *name* (serializable JSON, stored in the
+// site_content table), resolved through this map wherever it needs to
+// render as a component.
 export const ICON_OPTIONS: Record<string, LucideIcon> = {
   Target,
   Lightbulb,

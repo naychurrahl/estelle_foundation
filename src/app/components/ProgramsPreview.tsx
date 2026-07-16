@@ -11,11 +11,11 @@ import {
 } from "./ui/card";
 import { ArrowRight } from "lucide-react";
 import { PrimaryButton } from "./PrimaryButton";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 import { getIcon } from "@/app/lib/icons";
 
 export function ProgramsPreview() {
-  const { programs } = getSiteContent();
+  const { programs } = useSiteContent();
 
   return (
     <section className="py-20 bg-slate-50">

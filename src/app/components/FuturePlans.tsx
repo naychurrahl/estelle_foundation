@@ -3,11 +3,11 @@ import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 import { getIcon } from "@/app/lib/icons";
 
 export function FuturePlans() {
-  const { futurePlans: plans } = getSiteContent();
+  const { futurePlans: plans } = useSiteContent();
 
   return (
     <section className="py-20 bg-white">

@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 import { ProtectedAdminRoute } from "@/app/components/admin/ProtectedAdminRoute";
 import {
   getChildren,
-  saveChild,
+  addChild,
+  updateChild,
   deleteChild,
   getCommitments,
   updateCommitmentStatus,
   type Child,
   type ChildStatus,
+  type Commitment,
 } from "@/app/lib/aafStore";
 import { logout } from "@/app/lib/adminAuth";
 import { Button } from "@/app/components/ui/button";
@@ -39,6 +42,7 @@ import {
   SelectItem,
 } from "@/app/components/ui/select";
 import { PrimaryButton } from "@/app/components/PrimaryButton";
+import { Toaster } from "@/app/components/ui/sonner";
 import { Pencil, Trash2, Plus } from "lucide-react";
 
 const emptyChild: Child = {
@@ -66,12 +70,21 @@ function ChildFormDialog({
     if (next) setForm(child ?? emptyChild);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const id = form.id || `ch-${Date.now()}`;
-    saveChild({ ...form, id });
-    setOpen(false);
-    onSaved();
+    try {
+      const { id, ...rest } = form;
+      if (child) {
+        await updateChild(child.id, rest);
+      } else {
+        await addChild(rest);
+      }
+      setOpen(false);
+      onSaved();
+      toast.success(child ? "Child updated" : "Child added");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to save child");
+    }
   };
 
   return (
@@ -176,13 +189,22 @@ function ChildFormDialog({
 }
 
 function ChildrenTab() {
-  const [children, setChildren] = useState<Child[]>(() => getChildren());
+  const [children, setChildren] = useState<Child[]>([]);
 
-  const refresh = () => setChildren(getChildren());
+  const refresh = () => {
+    getChildren().then(setChildren);
+  };
 
-  const handleDelete = (id: string) => {
-    deleteChild(id);
-    refresh();
+  useEffect(refresh, []);
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteChild(id);
+      refresh();
+      toast.success("Child deleted");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to delete child");
+    }
   };
 
   return (
@@ -230,13 +252,21 @@ function ChildrenTab() {
 }
 
 function CommitmentsTab() {
-  const [commitments, setCommitments] = useState(() => getCommitments());
+  const [commitments, setCommitments] = useState<Commitment[]>([]);
 
-  const refresh = () => setCommitments(getCommitments());
+  const refresh = () => {
+    getCommitments().then(setCommitments);
+  };
 
-  const handleReview = (id: string) => {
-    updateCommitmentStatus(id, "reviewed");
-    refresh();
+  useEffect(refresh, []);
+
+  const handleReview = async (id: string) => {
+    try {
+      await updateCommitmentStatus(id, "reviewed");
+      refresh();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to update commitment");
+    }
   };
 
   return (
@@ -310,8 +340,8 @@ function AdminAAFContent() {
           </div>
           <Button
             variant="outline"
-            onClick={() => {
-              logout();
+            onClick={async () => {
+              await logout();
               navigate("/admin/login");
             }}
           >
@@ -332,6 +362,7 @@ function AdminAAFContent() {
           </TabsContent>
         </Tabs>
       </div>
+      <Toaster />
     </div>
   );
 }

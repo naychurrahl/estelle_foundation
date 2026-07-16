@@ -1,10 +1,10 @@
 import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 
 export function Partners() {
-  const { partners } = getSiteContent();
+  const { partners } = useSiteContent();
 
   return (
     <section className="py-20 bg-slate-50">

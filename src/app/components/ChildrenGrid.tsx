@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
@@ -11,16 +11,22 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "./ui/pagination";
-import { getChildren } from "@/app/lib/aafStore";
+import { getChildren, type Child } from "@/app/lib/aafStore";
 
 const PAGE_SIZE = 3;
 
 export function ChildrenGrid() {
   const [page, setPage] = useState(1);
+  const [children, setChildren] = useState<Child[]>([]);
 
-  // Once a child is spoken for, they come off the public list - this also
-  // avoids two sponsors committing to the same child at once.
-  const availableChildren = getChildren().filter(
+  useEffect(() => {
+    getChildren().then(setChildren);
+  }, []);
+
+  // The API already filters anonymous requests to available-only, but
+  // filtering again here is cheap and keeps this correct if that ever
+  // changes.
+  const availableChildren = children.filter(
     (child) => child.status === "available",
   );
 

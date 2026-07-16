@@ -9,10 +9,10 @@ import { FuturePlans } from "@/app/components/FuturePlans";
 import { SponsorshipPanel } from "@/app/components/SponsorshipPanel";
 import { Testimonials } from "@/app/components/Testimonials";
 import { Partners } from "@/app/components/Partners";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 
 export default function Home() {
-  const { heroSlides } = getSiteContent();
+  const { heroSlides } = useSiteContent();
 
   return (
     <div className="min-h-screen flex flex-col">

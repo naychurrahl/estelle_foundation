@@ -1,8 +1,8 @@
 import { FadeIn } from "./FadeIn";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 
 export function StatStrip() {
-  const { stats } = getSiteContent();
+  const { stats } = useSiteContent();
 
   return (
     <section className="py-16 bg-gradient-to-r from-purple-600 to-purple-800 text-white">

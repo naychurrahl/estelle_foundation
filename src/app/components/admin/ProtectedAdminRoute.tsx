@@ -1,5 +1,19 @@
+import { createContext, useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router";
-import { getSession, canAccess, type AdminModule } from "@/app/lib/adminAuth";
+import {
+  getSession,
+  canAccess,
+  type AdminModule,
+  type AdminSession,
+} from "@/app/lib/adminAuth";
+
+const AdminSessionContext = createContext<AdminSession | null>(null);
+
+// Lets pages under a ProtectedAdminRoute read the already-resolved session
+// instead of each calling getSession() again.
+export function useAdminSession(): AdminSession | null {
+  return useContext(AdminSessionContext);
+}
 
 // requiredModule omitted => just needs any valid session (used by the
 // dashboard, which shows different module cards per role rather than
@@ -11,7 +25,24 @@ export function ProtectedAdminRoute({
   requiredModule?: AdminModule;
   children: React.ReactNode;
 }) {
-  const session = getSession();
+  const [session, setSession] = useState<AdminSession | null | undefined>(
+    undefined,
+  );
+
+  useEffect(() => {
+    getSession()
+      .then(setSession)
+      .catch(() => setSession(null));
+  }, []);
+
+  if (session === undefined) {
+    return (
+      <div className="flex min-h-screen items-center justify-center text-slate-500">
+        Loading...
+      </div>
+    );
+  }
+
   const allowed = requiredModule
     ? canAccess(session, requiredModule)
     : !!session;
@@ -20,5 +51,9 @@ export function ProtectedAdminRoute({
     return <Navigate to="/admin/login" replace />;
   }
 
-  return <>{children}</>;
+  return (
+    <AdminSessionContext.Provider value={session}>
+      {children}
+    </AdminSessionContext.Provider>
+  );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { toast } from "sonner";
 import { ProtectedAdminRoute } from "@/app/components/admin/ProtectedAdminRoute";
 import { RepeatableListEditor } from "@/app/components/admin/RepeatableListEditor";
@@ -9,16 +9,18 @@ import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/app/components/ui/tabs";
 import { Toaster } from "@/app/components/ui/sonner";
-import { Link } from "react-router";
 import {
-  getSiteContent,
-  setSiteContent,
+  saveSiteContentSection,
   resetSiteContentSection,
   defaultSiteContent,
   type HeroSlideContent,
   type SponsorshipTier,
   type SocialLink,
 } from "@/app/lib/siteContent";
+import {
+  useSiteContent,
+  useSiteContentRefresh,
+} from "@/app/contexts/SiteContentContext";
 import { logout } from "@/app/lib/adminAuth";
 
 function SectionSaveBar({
@@ -78,18 +80,22 @@ function toNestedSlide(flat: FlatHeroSlide): HeroSlideContent {
 }
 
 function HeroTab() {
+  const { heroSlides } = useSiteContent();
+  const refresh = useSiteContentRefresh();
   const [slides, setSlides] = useState<FlatHeroSlide[]>(() =>
-    getSiteContent().heroSlides.map(toFlatSlide),
+    heroSlides.map(toFlatSlide),
   );
 
-  const handleSave = () => {
-    setSiteContent("heroSlides", slides.map(toNestedSlide));
+  const handleSave = async () => {
+    await saveSiteContentSection("heroSlides", slides.map(toNestedSlide));
+    refresh();
     toast.success("Hero slides saved");
   };
 
-  const handleReset = () => {
-    resetSiteContentSection("heroSlides");
+  const handleReset = async () => {
+    await resetSiteContentSection("heroSlides");
     setSlides(defaultSiteContent.heroSlides.map(toFlatSlide));
+    refresh();
     toast.success("Reset to default");
   };
 
@@ -132,7 +138,9 @@ function HeroTab() {
 }
 
 function StatsTab() {
-  const [stats, setStats] = useState(() => getSiteContent().stats);
+  const { stats: initialStats } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [stats, setStats] = useState(() => initialStats);
 
   return (
     <div className="space-y-4">
@@ -147,13 +155,15 @@ function StatsTab() {
         ]}
       />
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("stats", stats);
+        onSave={async () => {
+          await saveSiteContentSection("stats", stats);
+          refresh();
           toast.success("Stats saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("stats");
+        onReset={async () => {
+          await resetSiteContentSection("stats");
           setStats(defaultSiteContent.stats);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -162,7 +172,9 @@ function StatsTab() {
 }
 
 function ProgramsTab() {
-  const [programs, setPrograms] = useState(() => getSiteContent().programs);
+  const { programs: initialPrograms } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [programs, setPrograms] = useState(() => initialPrograms);
 
   return (
     <div className="space-y-4">
@@ -179,13 +191,15 @@ function ProgramsTab() {
         ]}
       />
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("programs", programs);
+        onSave={async () => {
+          await saveSiteContentSection("programs", programs);
+          refresh();
           toast.success("Programs saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("programs");
+        onReset={async () => {
+          await resetSiteContentSection("programs");
           setPrograms(defaultSiteContent.programs);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -194,7 +208,9 @@ function ProgramsTab() {
 }
 
 function FuturePlansTab() {
-  const [plans, setPlans] = useState(() => getSiteContent().futurePlans);
+  const { futurePlans } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [plans, setPlans] = useState(() => futurePlans);
 
   return (
     <div className="space-y-4">
@@ -211,13 +227,15 @@ function FuturePlansTab() {
         ]}
       />
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("futurePlans", plans);
+        onSave={async () => {
+          await saveSiteContentSection("futurePlans", plans);
+          refresh();
           toast.success("Future plans saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("futurePlans");
+        onReset={async () => {
+          await resetSiteContentSection("futurePlans");
           setPlans(defaultSiteContent.futurePlans);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -226,7 +244,9 @@ function FuturePlansTab() {
 }
 
 function SponsorshipTab() {
-  const [panel, setPanel] = useState(() => getSiteContent().sponsorshipPanel);
+  const { sponsorshipPanel } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [panel, setPanel] = useState(() => sponsorshipPanel);
 
   const updateTiers = (tiers: SponsorshipTier[]) =>
     setPanel({ ...panel, tiers });
@@ -277,13 +297,15 @@ function SponsorshipTab() {
       </div>
 
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("sponsorshipPanel", panel);
+        onSave={async () => {
+          await saveSiteContentSection("sponsorshipPanel", panel);
+          refresh();
           toast.success("Sponsorship panel saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("sponsorshipPanel");
+        onReset={async () => {
+          await resetSiteContentSection("sponsorshipPanel");
           setPanel(defaultSiteContent.sponsorshipPanel);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -292,9 +314,9 @@ function SponsorshipTab() {
 }
 
 function TestimonialsTab() {
-  const [testimonials, setTestimonials] = useState(
-    () => getSiteContent().testimonials,
-  );
+  const { testimonials: initialTestimonials } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [testimonials, setTestimonials] = useState(() => initialTestimonials);
 
   return (
     <div className="space-y-4">
@@ -311,13 +333,15 @@ function TestimonialsTab() {
         ]}
       />
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("testimonials", testimonials);
+        onSave={async () => {
+          await saveSiteContentSection("testimonials", testimonials);
+          refresh();
           toast.success("Testimonials saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("testimonials");
+        onReset={async () => {
+          await resetSiteContentSection("testimonials");
           setTestimonials(defaultSiteContent.testimonials);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -326,7 +350,9 @@ function TestimonialsTab() {
 }
 
 function PartnersTab() {
-  const [partners, setPartners] = useState(() => getSiteContent().partners);
+  const { partners: initialPartners } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [partners, setPartners] = useState(() => initialPartners);
 
   return (
     <div className="space-y-4">
@@ -341,13 +367,15 @@ function PartnersTab() {
         ]}
       />
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("partners", partners);
+        onSave={async () => {
+          await saveSiteContentSection("partners", partners);
+          refresh();
           toast.success("Partners saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("partners");
+        onReset={async () => {
+          await resetSiteContentSection("partners");
           setPartners(defaultSiteContent.partners);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -356,7 +384,9 @@ function PartnersTab() {
 }
 
 function AboutBriefTab() {
-  const [about, setAbout] = useState(() => getSiteContent().aboutBrief);
+  const { aboutBrief } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [about, setAbout] = useState(() => aboutBrief);
 
   return (
     <div className="space-y-4">
@@ -402,13 +432,15 @@ function AboutBriefTab() {
         </div>
       </div>
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("aboutBrief", about);
+        onSave={async () => {
+          await saveSiteContentSection("aboutBrief", about);
+          refresh();
           toast.success("About section saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("aboutBrief");
+        onReset={async () => {
+          await resetSiteContentSection("aboutBrief");
           setAbout(defaultSiteContent.aboutBrief);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -423,7 +455,9 @@ const SOCIAL_PLATFORM_LABEL: Record<SocialLink["platform"], string> = {
 };
 
 function FooterTab() {
-  const [footer, setFooter] = useState(() => getSiteContent().footer);
+  const { footer: initialFooter } = useSiteContent();
+  const refresh = useSiteContentRefresh();
+  const [footer, setFooter] = useState(() => initialFooter);
 
   const updateSocial = (platform: SocialLink["platform"], patch: Partial<SocialLink>) => {
     setFooter({
@@ -536,13 +570,15 @@ function FooterTab() {
       </div>
 
       <SectionSaveBar
-        onSave={() => {
-          setSiteContent("footer", footer);
+        onSave={async () => {
+          await saveSiteContentSection("footer", footer);
+          refresh();
           toast.success("Footer saved");
         }}
-        onReset={() => {
-          resetSiteContentSection("footer");
+        onReset={async () => {
+          await resetSiteContentSection("footer");
           setFooter(defaultSiteContent.footer);
+          refresh();
           toast.success("Reset to default");
         }}
       />
@@ -565,8 +601,8 @@ function AdminContentContent() {
           </div>
           <Button
             variant="outline"
-            onClick={() => {
-              logout();
+            onClick={async () => {
+              await logout();
               navigate("/admin/login");
             }}
           >

@@ -4,10 +4,10 @@ import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
 import { PrimaryButton } from "./PrimaryButton";
 import { ArrowRight } from "lucide-react";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 
 export function AboutBrief() {
-  const { aboutBrief } = getSiteContent();
+  const { aboutBrief } = useSiteContent();
   const { heading, paragraphs, image, ctaLabel, ctaLink } = aboutBrief;
 
   return (

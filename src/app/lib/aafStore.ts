@@ -1,9 +1,17 @@
-// Adopt-a-Future data: localStorage-backed for now (no backend yet).
-// `data/children.ts` supplies the seed array; this is where admin
-// edits/commitments actually live and get read back from.
-import { children as seedChildren, type Child, type ChildStatus } from "@/app/data/children";
+// Adopt-a-Future data, backed by the real /children and /commitments API.
+import { ApiRequest, baseUrl } from "@/app/components/ApiRequest";
 
-export type { Child, ChildStatus };
+export type ChildStatus = "available" | "pending" | "matched";
+
+export type Child = {
+  id: string;
+  photo: string;
+  firstName: string;
+  age: number;
+  schoolClass: string;
+  feeTotal: number;
+  status: ChildStatus;
+};
 
 export type CommitmentTier = "full" | "co";
 export type CommitmentStatus = "new" | "reviewed";
@@ -21,83 +29,48 @@ export type Commitment = {
   createdAt: string;
 };
 
-const CHILDREN_KEY = "estelle-children";
-const COMMITMENTS_KEY = "estelle-commitments";
-
-function readChildren(): Child[] {
-  try {
-    const raw = localStorage.getItem(CHILDREN_KEY);
-    return raw ? JSON.parse(raw) : seedChildren;
-  } catch {
-    return seedChildren;
-  }
+export async function getChildren(): Promise<Child[]> {
+  return ApiRequest({ url: `${baseUrl}/children` });
 }
 
-function writeChildren(children: Child[]): void {
-  localStorage.setItem(CHILDREN_KEY, JSON.stringify(children));
+export async function addChild(input: Omit<Child, "id">): Promise<{ id: string }> {
+  return ApiRequest({ url: `${baseUrl}/children`, method: "POST", body: input });
 }
 
-export function getChildren(): Child[] {
-  return readChildren();
+export async function updateChild(
+  id: string,
+  patch: Partial<Omit<Child, "id">>,
+): Promise<void> {
+  await ApiRequest({
+    url: `${baseUrl}/children`,
+    method: "PUT",
+    body: { id, ...patch },
+  });
 }
 
-export function saveChild(child: Child): void {
-  const children = readChildren();
-  const index = children.findIndex((c) => c.id === child.id);
-  if (index === -1) {
-    writeChildren([...children, child]);
-  } else {
-    writeChildren(children.map((c) => (c.id === child.id ? child : c)));
-  }
+export async function deleteChild(id: string): Promise<void> {
+  await ApiRequest({ url: `${baseUrl}/children`, method: "DELETE", body: { id } });
 }
 
-export function deleteChild(id: string): void {
-  writeChildren(readChildren().filter((c) => c.id !== id));
+export async function getCommitments(): Promise<Commitment[]> {
+  return ApiRequest({ url: `${baseUrl}/commitments` });
 }
 
-function readCommitments(): Commitment[] {
-  try {
-    const raw = localStorage.getItem(COMMITMENTS_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeCommitments(commitments: Commitment[]): void {
-  localStorage.setItem(COMMITMENTS_KEY, JSON.stringify(commitments));
-}
-
-export function getCommitments(): Commitment[] {
-  return readCommitments();
-}
-
-// Also flips the committed child to "pending" so they come off the public
-// list - avoids two sponsors committing to the same child at once.
-export function addCommitment(
+// Backend also flips the committed child to "pending" so they come off the
+// public list - avoids two sponsors committing to the same child at once.
+export async function addCommitment(
   input: Omit<Commitment, "id" | "status" | "createdAt">,
-): void {
-  const commitment: Commitment = {
-    ...input,
-    id: `sc-${Date.now()}`,
-    status: "new",
-    createdAt: new Date().toISOString(),
-  };
-  writeCommitments([...readCommitments(), commitment]);
-
-  const children = readChildren();
-  writeChildren(
-    children.map((c) =>
-      c.id === input.childId ? { ...c, status: "pending" as ChildStatus } : c,
-    ),
-  );
+): Promise<{ id: string; childId: string }> {
+  return ApiRequest({ url: `${baseUrl}/commitments`, method: "POST", body: input });
 }
 
-export function updateCommitmentStatus(
+export async function updateCommitmentStatus(
   id: string,
   status: CommitmentStatus,
-): void {
-  writeCommitments(
-    readCommitments().map((c) => (c.id === id ? { ...c, status } : c)),
-  );
+): Promise<void> {
+  await ApiRequest({
+    url: `${baseUrl}/commitments`,
+    method: "PUT",
+    body: { id, status },
+  });
 }

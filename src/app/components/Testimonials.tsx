@@ -3,10 +3,10 @@ import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
 import { Card, CardContent } from "./ui/card";
 import { Quote } from "lucide-react";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 
 export function Testimonials() {
-  const { testimonials } = getSiteContent();
+  const { testimonials } = useSiteContent();
 
   return (
     <section className="py-20 bg-white">

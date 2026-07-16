@@ -1,9 +1,8 @@
-// Frontend-only content store: localStorage-backed, seeded with today's
-// hardcoded homepage copy. Every public component reads through here
-// instead of a local const, so admin edits show up live. Icon fields are
-// string names (see ./icons.ts), not component references, so this is
-// plain JSON all the way down - this is the seam a real backend/API
-// replaces later.
+// Backed by the real /site-content API now. Icon fields are string names
+// (see ./icons.ts), not component references, so this is plain JSON all the
+// way down. `defaultSiteContent` stays as a fallback if a fetch fails and as
+// the "Reset to Default" value in the CMS.
+import { ApiRequest, baseUrl } from "@/app/components/ApiRequest";
 
 export type HeroCta = { label: string; to?: string; href?: string };
 
@@ -322,32 +321,31 @@ export const defaultSiteContent: SiteContent = {
   },
 };
 
-const STORAGE_KEY = "estelle-site-content";
-
-function readStoredContent(): Partial<SiteContent> {
+export async function fetchSiteContent(): Promise<SiteContent> {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch {
-    return {};
+    const data = await ApiRequest({ url: `${baseUrl}/site-content` });
+    return { ...defaultSiteContent, ...data };
+  } catch (e) {
+    console.error("Failed to fetch site content, using defaults", e);
+    return defaultSiteContent;
   }
 }
 
-export function getSiteContent(): SiteContent {
-  return { ...defaultSiteContent, ...readStoredContent() };
+export async function saveSiteContentSection<K extends keyof SiteContent>(
+  section: K,
+  data: SiteContent[K],
+): Promise<void> {
+  await ApiRequest({
+    url: `${baseUrl}/site-content`,
+    method: "PUT",
+    body: { section, data },
+  });
 }
 
-export function setSiteContent<K extends keyof SiteContent>(
+export async function resetSiteContentSection<K extends keyof SiteContent>(
   key: K,
-  value: SiteContent[K],
-): void {
-  const current = getSiteContent();
-  const next = { ...current, [key]: value };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-}
-
-export function resetSiteContentSection<K extends keyof SiteContent>(
-  key: K,
-): void {
-  setSiteContent(key, defaultSiteContent[key]);
+): Promise<SiteContent[K]> {
+  const value = defaultSiteContent[key];
+  await saveSiteContentSection(key, value);
+  return value;
 }

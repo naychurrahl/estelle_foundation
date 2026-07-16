@@ -5,11 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Check } from "lucide-react";
 import { PrimaryButton } from "./PrimaryButton";
 import { Link } from "react-router";
-import { getSiteContent } from "@/app/lib/siteContent";
+import { useSiteContent } from "@/app/contexts/SiteContentContext";
 import { getIcon } from "@/app/lib/icons";
 
 export function SponsorshipPanel() {
-  const { sponsorshipPanel } = getSiteContent();
+  const { sponsorshipPanel } = useSiteContent();
   const { paragraphs, tiers, ctaLabel, ctaLink } = sponsorshipPanel;
 
   return (
