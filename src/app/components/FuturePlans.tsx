@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { FadeIn } from "./FadeIn";
 import { SectionLabel } from "./SectionLabel";
 import { SectionHeading } from "./SectionHeading";
@@ -40,6 +41,7 @@ const plans = [
     title: "Adopt a Future Program",
     description:
       "Connecting less privileged children with sponsors who commit to funding their secondary education, including school fees, books, and essentials, while receiving regular academic reports and progress updates from the Foundation",
+    href: "/adopt-a-future",
   },
   {
     icon: Target,
@@ -67,25 +69,33 @@ export function FuturePlans() {
         <div className="grid md:grid-cols-4 gap-6">
           {plans.map((plan, index) => {
             const Icon = plan.icon;
+            const card = (
+              <Card
+                className={`h-full border-l-4 border-l-purple-600 transition-shadow hover:shadow-lg ${
+                  plan.href ? "cursor-pointer" : ""
+                }`}
+              >
+                <CardHeader className="h-full w-full flex items-center justify-center">
+                  <div className="flex flex-row items-center justify-center gap-4 pb-4">
+                    <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+                      <Icon className="size-6 text-purple-600" />
+                    </div>
+                    <div>
+                      <CardTitle className="mb-2 font-medium">
+                        {plan.title}
+                      </CardTitle>
+                      <p className="text-slate-600 text-sm">
+                        {plan.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardHeader>
+              </Card>
+            );
+
             return (
               <FadeIn key={plan.title} delay={index * 0.1}>
-                <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-purple-600">
-                  <CardHeader className="h-full w-full flex items-center justify-center">
-                    <div className="flex flex-row items-center justify-center gap-4 pb-4">
-                      <div className="size-12 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
-                        <Icon className="size-6 text-purple-600" />
-                      </div>
-                      <div>
-                        <CardTitle className="mb-2 font-medium">
-                          {plan.title}
-                        </CardTitle>
-                        <p className="text-slate-600 text-sm">
-                          {plan.description}
-                        </p>
-                      </div>
-                    </div>
-                  </CardHeader>
-                </Card>
+                {plan.href ? <Link to={plan.href}>{card}</Link> : card}
               </FadeIn>
             );
           })}

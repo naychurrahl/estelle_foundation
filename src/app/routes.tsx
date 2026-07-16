@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Gallery from "./pages/Gallery";
 import ContactUs from "@/app/pages/ContactUs";
+import AdoptAFuture from "@/app/pages/AdoptAFuture";
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +21,9 @@ export const router = createBrowserRouter([
   {
     path: "/contact",
     Component: ContactUs,
+  },
+  {
+    path: "/adopt-a-future",
+    Component: AdoptAFuture,
   },
 ]);
